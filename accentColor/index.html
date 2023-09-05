@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CSS DEMO: Accent-color</title>
+</head>
+<style>
+    .container {
+        margin-bottom: 50px;
+    }
+
+    label {
+        display: block;
+        margin: 20px 0;
+    }
+
+    input[type=range],
+    input[type=checkbox],
+    input[type=radio] {
+        transform: scale(2);
+        transform-origin: left;
+    }
+
+    input[type=radio] {
+        accent-color: magenta;
+    }
+
+    .chk1 {
+        accent-color: orange;
+    }
+
+    .chk2 {
+        accent-color: #aaa;
+    }
+
+    .chk3 {
+        accent-color: #fff;
+    }
+
+    input[type=range]{
+        accent-color: green;
+        display: block;
+    }
+
+    progress {
+        accent-color: orange;
+        transform: scale(2);
+        transform-origin: left top;
+        display: block;
+    }
+
+    span {
+        display: inline-block;
+        margin-left: 10px;
+    }
+
+</style>
+<body>
+    <h1>accent-color</h1>
+    <div class="container">
+        Radio buttons
+        <label for="radio1">
+            <input id="radio1" type="radio" name="radio" />
+            <span>Radio button option 1</span>
+        </label>
+        <label for="radio2">
+            <input id="radio2" type="radio" name="radio" />
+            <span>Radio button option 2</span>
+        </label>
+        <label for="radio3">
+            <input id="radio3" type="radio" name="radio" />
+            <span>Radio button option 3</span>
+        </label>
+    </div>
+    <div class="container">
+        Checkbox
+        <label for="chk1">
+            <input id="chk1" class="chk1" type="checkbox" />
+            <span>Orange</span>
+        </label>
+        <label for="chk2">
+            <input id="chk2" class="chk2" type="checkbox" />
+            <span>Grey</span>
+        </label>
+        <label for="chk3">
+            <input id="chk3" class="chk3" type="checkbox" />
+            <span>White</span>
+        </label>
+    </div>
+    <div class="container">
+        Progres
+        <progress min="0" max="100" value="50"></progress>
+    </div>
+    <div class="container">
+        Range
+        <input type="range">
+    </div>
+    
+</body>
+</html>
