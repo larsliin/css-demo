@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>CSS DEMO: Container Query</title>
+
+<style>
+
+/*
+Grid resizer
+*/
+body.grid-resize {
+    cursor: col-resize;
+}
+
+.container {
+    display: grid;
+    grid-template-areas: "leftcol dragbar rightcol";
+    grid-template-columns: 1fr 20px 1fr;
+    height: calc(100vh - 16px);
+}
+
+.handler {
+    cursor: col-resize;
+    grid-area: dragbar;
+}
+
+.handler::after {
+    background-color: #ccc;
+    content: "";
+    display: block;
+    height: 100%;
+    margin: 0 auto;
+    width: 4px;
+}
+
+body.grid-resize .handler::after, .handler:hover::after {
+    background-color: #666;
+    width: 6px;
+}
+
+.leftcol {
+    grid-area: leftcol;
+}
+
+.rightcol {
+    grid-area: rightcol;
+}
+
+.col {
+    display: flex;
+}
+
+/*
+* container media queries
+*/
+.leftcol {
+    container-type: inline-size;
+}
+
+.content {
+    background-color: blue;
+    width: 100%;
+}
+
+@container (min-width: 20vw) {
+    .content {
+        background-color: red;
+    }
+}
+
+@container (min-width: 40vw) {
+    .content {
+        background-color: green;
+    }
+}
+
+@container (min-width: 60vw) {
+    .content {
+        background-color: yellow;
+    }
+}
+</style>
+
+</head>
+<body id="body">
+    <div class="container" id="container">
+        <div class="col leftcol">
+            <div class="content"></div>
+        </div>
+        <div class="handler" id="handler"></div>
+        <div class="col rightcol">
+            <div class="content"></div>
+        </div>
+    </div>
+</body>
+
+<script>
+    (function () {
+        const body = document.getElementById("body");
+        const handler = document.getElementById("handler");
+        const container = document.getElementById("container");
+        const handlerWidth = handler.offsetWidth;
+
+        let leftSizeTextElem;
+        let dragOffsetX = 0;
+        let relativePos = 0.5;
+        let cols = [];
+        let isDragging = false;
+
+        function onWindowResize() {
+            let leftColWidth = body.offsetWidth * relativePos;
+
+            adjustGridWidth(leftColWidth);
+        }
+
+        function onDocumentMouseDown(event) {
+            if (event.target === handler) {
+                isDragging = true;
+
+                document.addEventListener("mousemove", onDocumentMouseMove);
+
+                dragOffsetX = event.clientX - event.target.offsetLeft + handlerWidth / 2;
+
+                body.classList.add("grid-resize");
+            }
+        }
+
+        function onDocumentMouseUp() {
+            isDragging = false;
+
+            document.removeEventListener("mousemove", onDocumentMouseMove);
+
+            body.classList.remove("grid-resize");
+        }
+
+        function onDocumentMouseMove(event) {
+            if (isDragging) {
+                let leftColWidth = isDragging ? event.clientX - dragOffsetX : leftcol.clientWidth;
+
+                adjustGridWidth(leftColWidth);
+
+                event.preventDefault();
+            }
+        }
+
+        function adjustGridWidth(w) {
+            let leftColWidth = w;
+
+            leftColWidth = Math.min(leftColWidth, window.innerWidth);
+
+            relativePos = leftColWidth / body.offsetWidth;
+
+            cols = [
+                leftColWidth,
+                handlerWidth,
+                container.clientWidth - handlerWidth - leftColWidth,
+            ];
+
+            container.style.gridTemplateColumns = cols.map((c) => c.toString() + "px").join(" ");
+        }
+
+        window.addEventListener("resize", onWindowResize);
+        document.addEventListener("mouseleave", onDocumentMouseUp);
+        document.addEventListener("mousedown", onDocumentMouseDown);
+        document.addEventListener("mouseup", onDocumentMouseUp);
+
+        window.dispatchEvent(new Event("resize"));
+    })();
+</script>
+</html>
