@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CSS DEMO: Aspect ratio</title>
+    <style>
+        .container {
+            margin-bottom: 20px;
+        }
+
+        .elem1 {
+            aspect-ratio: 1;
+            background-color: black;
+            border-radius: 50%;
+            position: relative;
+            width: 50px;
+        }
+
+        .elem1:after {
+            color: white;
+            content: '+';
+            font-size: 50px;
+            left: 50%;
+            line-height: 0;
+            position: absolute;
+            top: 50%;
+            transform: translate(-50%, -50%) rotate(45deg);
+        }
+
+        .elem2 {
+            aspect-ratio: 1;
+            background-color: red;
+            border-radius: 50%;
+            border: 10px solid darkred;
+            width: 100px;
+        }
+
+        .elem3 {
+            aspect-ratio: 9 / 16;
+            background-color: green;
+            border: 10px solid darkolivegreen;
+            height: 300px;
+        }
+
+        .elem4 {
+            aspect-ratio: 4 / 3;
+            background-color: blue;
+            border: 10px solid darkblue;
+            width: 300px;
+        }
+
+        .elem5 {
+            aspect-ratio: 4 / 3;
+            background-color: green;
+            border: 10px solid darkolivegreen;
+            width: 450px;
+            background-image: url(image.jpg);
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-position-x: center;
+        }
+
+    </style>
+</head>
+<body>
+    <h1>aspect-ratio</h1>
+    <div class="container">
+        <div class="elem1"></div>
+    </div>
+    <div class="container">
+        <div class="elem2"></div>
+    </div>
+    <div class="container">
+        <div class="elem3"></div>
+    </div>
+    <div class="container">
+        <div class="elem4"></div>
+    </div>
+    <div class="container">
+        <div class="elem5"></div>
+        <a href="image.jpg" target="_blank">image.jpg</a>
+    </div>
+</body>
+</html>
