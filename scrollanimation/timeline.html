@@ -5,93 +5,687 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>CSS DEMO: animation-timeline</title>
     <style>
-        .subject {
-            width: 200px;
-            aspect-ratio: 1;
-            margin: 0 auto;
-            background-color: deeppink;
+        :root {
+            --color: red;
+            --description-gutter: 100px;
+
+            --pos1: 6%;
+            --pos2: 10%;
+            --pos3: 15%;
+            --pos4: 18%;
+            --pos5: 22%;
+            --pos6: 26%;
+            --pos7: 35%;
+            --pos8: 38%;
+            --pos9: 48%;
+            --pos10: 56%;
+            --pos11: 60%;
+            --pos12: 66%;
+            --pos13: 70%;
+            --pos14: 75%;
+            --pos15: 80%;
+            --pos16: 85%;
+            --pos17: 88%;
+            --pos18: 95%;
+        }
+
+        body {
+            margin: 0;
+        }
+
+        .outer {
+            display: flex;
+            position: relative;
+            justify-content: center;
+        }
+        
+        .content {
+            height: 1100vh;
+            position: relative;
+        }
+
+        .content::after {
+            background-color: var(--color);
+            content: '';
+            display: block;
+            height: 100%;
             position: absolute;
+            transform: translateX(-50%);
+            width: 6px;
+        }
+
+        .background {
+            background-repeat: no-repeat;
+            background-size: cover;
+            left: 0;
+            position: fixed;
+            top: 0;
+            width: 100%;
+            height: 200vh;
+            background-position: center;
+        }
+
+        .background1 {
+            background-image: url(fire-bg-2.jpg);
+            background-repeat: no-repeat;
+            background-size: cover;
+            animation: background-animation ease-in forwards;
+            animation-timeline: scroll();
+            filter: blur(2px);
+            -webkit-filter: blur(2px);
+        }
+        
+        .background2 {
+            background-image: url(fire-bg-3.png);
+            animation: background-animation-front ease-in forwards;
+            animation-timeline: scroll();
+            filter: blur(6px);
+            -webkit-filter: blur(6px);
+        }
+
+        .subject {
+            aspect-ratio: 1;
+            background-color: var(--color);
+            border-radius: 50%;
+            margin-left: -25px;
+            margin-top: -25px;
             perspective: 500px;
+            position: absolute;
+            width: 50px;
             
             &.subject1 {
-                top: 100vh;
+                top: var(--pos1);
             }
             
             &.subject2 {
-                top: 150vh;
+                top: var(--pos2);
             }
             
             &.subject3 {
-                top: 200vh;
+                top: var(--pos3);
             }
 
             &.subject4 {
-                top: 250vh;
+                top: var(--pos4);
             }
 
             &.subject5 {
-                top: 300vh;
+                top: var(--pos5);
             }
 
             &.subject6 {
-                top: 350vh;
+                top: var(--pos6);
             }
 
             &.subject7 {
-                top: 400vh;
+                top: var(--pos7);
+            }
+
+            &.subject8 {
+                top: var(--pos8);
+            }
+
+            &.subject9 {
+                top: var(--pos9);
+            }
+
+            &.subject10 {
+                top: var(--pos10);
+            }
+
+            &.subject11 {
+                top: var(--pos11);
+            }
+
+            &.subject12 {
+                top: var(--pos12);
+            }
+
+            &.subject13 {
+                top: var(--pos13);
+            }
+
+            &.subject14 {
+                top: var(--pos14);
+            }
+
+            &.subject15 {
+                top: var(--pos15);
+            }
+
+            &.subject16 {
+                top: var(--pos16);
+            }
+
+            &.subject17 {
+                top: var(--pos17);
+            }
+
+            &.subject18 {
+                top: var(--pos18);
             }
         }
 
-        .content {
-            margin: 0 auto;
-            height: 300vh;
-
-        }
-
-        .animation {
-            animation: in ease-in forwards, out ease-in forwards;
+        .subject-animation {
+            animation: pin-in ease-in forwards, pin-out ease-in forwards;
             animation-timeline: view();
             animation-range: entry 0% entry calc(100% + 200px), exit calc(100% - 300px) exit 100%;
         }
 
-        @keyframes in {
+        .description-text{
+            font-size: 35px;
+            text-align: center;
+            padding: 20px 10px;
+            z-index: 1;
+        }
+
+        .description-text.large{
+            font-size: 45px;
+        }
+
+        .description-text.xlarge{
+            font-size: 65px;
+        }
+
+        .description {
+            background-color: #ccc;
+            border-radius: 20px;
+            height: 250px;
+            margin-top: -125px;
+            position: absolute;
+            width: 300px;
+            overflow: hidden;
+            background: linear-gradient(0deg, rgba(239,233,18,1) 0%, rgba(251,21,21,1) 100%);
+            box-shadow: 0 0 20px 10px rgba(255, 0, 0, .5);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            
+            .description-background {
+                background-size: cover;
+                filter: blur(4px);
+                background-image: url(fire-bg-3.png);
+                background-repeat: no-repeat;
+                position: absolute;
+                width: 100%;
+                height: 100%;
+            }
+
+            &.description1 {
+                top: var(--pos1);
+                left: var(--description-gutter);
+            }
+            
+            &.description2 {
+                top: var(--pos2);
+                right: var(--description-gutter);
+            }
+            
+            &.description3 {
+                top: var(--pos3);
+                left: var(--description-gutter);
+            }
+
+            &.description4 {
+                top: var(--pos4);
+                right: var(--description-gutter);
+            }
+
+            &.description5 {
+                top: var(--pos5);
+                left: var(--description-gutter);
+            }
+
+            &.description6 {
+                top: var(--pos6);
+                right: var(--description-gutter);
+            }
+
+            &.description7 {
+                top: var(--pos7);
+                left: var(--description-gutter);
+            }
+
+            &.description8 {
+                top: var(--pos8);
+                right: var(--description-gutter);
+            }
+
+            &.description9 {
+                top: var(--pos9);
+                left: var(--description-gutter);
+            }
+
+            &.description10 {
+                top: var(--pos10);
+                right: var(--description-gutter);
+            }
+
+            &.description11 {
+                top: var(--pos11);
+                left: var(--description-gutter);
+            }
+
+            &.description12 {
+                top: var(--pos12);
+                right: var(--description-gutter);
+            }
+
+            &.description13 {
+                top: var(--pos13);
+                left: var(--description-gutter);
+            }
+
+            &.description14 {
+                top: var(--pos14);
+                right: var(--description-gutter);
+            }
+
+            &.description15{
+                top: var(--pos15);
+                left: var(--description-gutter);
+            }
+
+            &.description16 {
+                top: var(--pos16);
+                right: var(--description-gutter);
+            }
+
+            &.description17 {
+                top: var(--pos17);
+                left: var(--description-gutter);
+            }
+
+            &.description18 {
+                top: var(--pos18);
+                right: var(--description-gutter);
+            }
+        }
+
+        .description-animation {
+            animation: description-in ease-in forwards, description-out ease-in forwards;
+            animation-timeline: view();
+            animation-range: entry 0% entry calc(100% + 200px), exit calc(100% - 300px) exit 100%;
+        }
+
+        .description-animation.right {
+            animation: description-in-right ease-in forwards, description-out-right ease-in forwards;
+            animation-timeline: view();
+            animation-range: entry 0% entry calc(100% + 200px), exit calc(100% - 300px) exit 100%;
+        }
+
+        .year {
+            height: 60px;
+            margin-top: -30px;
+            position: absolute;
+            font-size: 50px;
+            background-color: red;
+            border-radius: 10px;
+            padding: 10px;
+
+            &.year1 {
+                top: var(--pos1);
+                right: var(--description-gutter);
+            }
+            
+            &.year2 {
+                top: var(--pos2);
+                left: var(--description-gutter);
+            }
+            
+            &.year3 {
+                top: var(--pos3);
+                right: var(--description-gutter);
+            }
+
+            &.year4 {
+                top: var(--pos4);
+                left: var(--description-gutter);
+            }
+
+            &.year5 {
+                top: var(--pos5);
+                right: var(--description-gutter);
+            }
+
+            &.year6 {
+                top: var(--pos6);
+                left: var(--description-gutter);
+            }
+
+            &.year7 {
+                top: var(--pos7);
+                right: var(--description-gutter);
+            }
+
+            &.year8 {
+                top: var(--pos8);
+                left: var(--description-gutter);
+            }
+
+            &.year9 {
+                top: var(--pos9);
+                right: var(--description-gutter);
+            }
+
+            &.year10 {
+                top: var(--pos10);
+                left: var(--description-gutter);
+            }
+
+            &.year11 {
+                top: var(--pos11);
+                right: var(--description-gutter);
+            }
+
+            &.year12 {
+                top: var(--pos12);
+                left: var(--description-gutter);
+            }
+
+            &.year13 {
+                top: var(--pos13);
+                right: var(--description-gutter);
+            }
+
+            &.year14 {
+                top: var(--pos14);
+                left: var(--description-gutter);
+            }
+
+            &.year15 {
+                top: var(--pos15);
+                right: var(--description-gutter);
+            }
+
+            &.year16{
+                top: var(--pos16);
+                left: var(--description-gutter);
+            }
+
+            &.year17 {
+                top: var(--pos17);
+                right: var(--description-gutter);
+            }
+
+            &.year18 {
+                top: var(--pos18);
+                left: var(--description-gutter);
+            }
+        }
+
+        
+        .year-animation.left {
+            animation: year-in-left ease-in forwards, year-out-left ease-in forwards;
+            animation-timeline: view();
+            animation-range: entry 0% entry calc(100% + 200px), exit calc(100% - 300px) exit 100%;
+        }
+        
+        .year-animation.right {
+            animation: year-in-right ease-in forwards, year-out-right ease-in forwards;
+            animation-timeline: view();
+            animation-range: entry 0% entry calc(100% + 200px), exit calc(100% - 300px) exit 100%;
+        }
+
+        
+
+        @keyframes background-animation {
+            from {
+                transform: translateY(0);
+            }
+            
+            to {
+                transform: translateY(-400px);
+            }
+        }
+        @keyframes background-animation-front {
+            from {
+                transform: translateY(0);
+            }
+            
+            to {
+                transform: translateY(-600px);
+            }
+        }
+
+        @keyframes pin-in {
+            from {
+                transform: translateY(200px);
+            }
+
+            to {
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes pin-out {
+            from {
+                transform: translateY(0);
+            }
+
+            to {
+                transform: translateY(-200px);
+            }
+        }
+
+        @keyframes description-in {
             from {
                 opacity: 0;
-                transform: perspective(400px) rotateY(-180deg);
+                transform: perspective(400px) rotateY(-180deg) rotateX(-360deg) scale(.25);
             }
 
             to {
                 opacity: 1;
-                transform: perspective(400px) rotateY(0deg);
+                transform: perspective(400px) rotateY(10deg) rotateX(10deg) scale(1);
             }
         }
 
-        @keyframes out {
+        @keyframes description-out {
             from {
                 opacity: 1;
-                transform: perspective(400px) rotateY(0);
+                transform: perspective(400px) rotateY(10deg) rotateX(10deg) scale(1);
             }
 
             to {
                 opacity: 0;
-                transform: perspective(400px) rotateY(180deg);
+                transform: perspective(400px) rotateY(180deg) rotateX(360deg) scale(.25);
             }
         }
+
+        @keyframes description-in-right {
+            from {
+                opacity: 0;
+                transform: perspective(400px) rotateY(180deg) rotateX(660deg) scale(.25);
+            }
+
+            to {
+                opacity: 1;
+                transform: perspective(400px) rotateY(-10deg) rotateX(-5deg) scale(1);
+            }
+        }
+
+        @keyframes description-out-right {
+            from {
+                opacity: 1;
+                transform: perspective(400px) rotateY(-10deg) rotateX(-5deg) scale(1);
+            }
+
+            to {
+                opacity: 0;
+                transform: perspective(400px) rotateY(-180deg) rotateX(660deg) scale(.25);
+            }
+        }
+
+        @keyframes year-in-left {
+            from {
+                opacity: 0;
+                transform: translateX(100%);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes year-out-left {
+            from {
+                opacity: 1;
+                transform: translateX(0);
+            }
+
+            to {
+                opacity: 0;
+                transform: translateX(100%);
+            }
+        }
+
+        @keyframes year-in-right {
+            from {
+                opacity: 0;
+                transform: translateX(-100%);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes year-out-right {
+            from {
+                opacity: 1;
+                transform: translateX(0);
+            }
+
+            to {
+                opacity: 0;
+                transform: translateX(-100%);
+            }
+        }
+        
 
     </style>
 </head>
 <body>
-    <div class="content">
-        <h1>Content</h1>
+    <div class="outer">
+        <div class="content">
+            <div class="background background1"></div>
+            <div class="background background2"></div>
 
-        <div class="animation subject subject1"></div>
-        <div class="animation subject subject2"></div>
-        <div class="animation subject subject3"></div>
-        <div class="animation subject subject4"></div>
-        <div class="animation subject subject5"></div>
-        <div class="animation subject subject6"></div>
-        <div class="animation subject subject7"></div>
-      </div>
+            <div class="subject-animation subject subject1"></div>
+            <div class="subject-animation subject subject2"></div>
+            <div class="subject-animation subject subject3"></div>
+            <div class="subject-animation subject subject4"></div>
+            <div class="subject-animation subject subject5"></div>
+            <div class="subject-animation subject subject6"></div>
+            <div class="subject-animation subject subject7"></div>
+            <div class="subject-animation subject subject8"></div>
+            <div class="subject-animation subject subject9"></div>
+            <div class="subject-animation subject subject10"></div>
+            <div class="subject-animation subject subject11"></div>
+            <div class="subject-animation subject subject12"></div>
+            <div class="subject-animation subject subject13"></div>
+            <div class="subject-animation subject subject14"></div>
+            <div class="subject-animation subject subject15"></div>
+            <div class="subject-animation subject subject16"></div>
+            <div class="subject-animation subject subject17"></div>
+            <div class="subject-animation subject subject18"></div>
+            
+            <div class="year-animation left year year1">1975</div>
+            <div class="year-animation right year year2">1975</div>
+            <div class="year-animation left year year3">1976</div>
+            <div class="year-animation right year year4">1976</div>
+            <div class="year-animation left year year5">1977</div>
+            <div class="year-animation right year year6">1978</div>
+            <div class="year-animation left year year7">1979</div>
+            <div class="year-animation right year year8">1980</div>
+            <div class="year-animation left year year9">1981</div>
+            <div class="year-animation right year year10">1983</div>
+            <div class="year-animation left year year11">1985</div>
+            <div class="year-animation right year year12">1988</div>
+            <div class="year-animation left year year13">1990</div>
+            <div class="year-animation right year year14">1995</div>
+            <div class="year-animation left year year15">2000</div>
+            <div class="year-animation right year year16">2008</div>
+            <div class="year-animation left year year17">2014</div>
+            <div class="year-animation right year year18">2020</div>
+
+            <div class="description-animation right description description1">
+                <div class="description-text large">High Voltage</div>
+                <div class="description-background"></div>
+            </div>
+            <div class="description-animation description description2">
+                <div class="description-text xlarge">T.N.T.</div>
+                <div class="description-background"></div>
+            </div>
+            <div class="description-animation right description description3">
+                <div class="description-text large">High Voltage</div>
+                <div class="description-background"></div>
+            </div>
+            <div class="description-animation description description4">
+                <div class="description-text">Dirty Deeds Done Dirt Cheap</div>
+                <div class="description-background"></div>
+            </div>
+            <div class="description-animation right description description5">
+                <div class="description-text">Let There Be Rock</div>
+                <div class="description-background"></div>
+            </div>
+            <div class="description-animation description description6">
+                <div class="description-text xlarge">Powerage</div>
+                <div class="description-background"></div>
+            </div>
+            <div class="description-animation right description description7">
+                <div class="description-text">Highway to Hell</div>
+                <div class="description-background"></div>
+            </div>
+            <div class="description-animation description description8">
+                <div class="description-text large">Back in Black</div>
+                <div class="description-background"></div>
+            </div>
+            <div class="description-animation right description description9">
+                <div class="description-text">For Those About to Rock We Salute You</div>
+                <div class="description-background"></div>
+            </div>
+            <div class="description-animation description description10">
+                <div class="description-text">Flick of the Switch</div>
+                <div class="description-background"></div>
+            </div>
+            <div class="description-animation right description description11">
+                <div class="description-text large">Fly on the Wall</div>
+                <div class="description-background"></div>
+            </div>
+            <div class="description-animation description description12">
+                <div class="description-text">Blow Up Your Video</div>
+                <div class="description-background"></div>
+            </div>
+            <div class="description-animation right description description13">
+                <div class="description-text">The Razors Edge</div>
+                <div class="description-background"></div>
+            </div>
+            <div class="description-animation right description description14">
+                <div class="description-text large">Ballbreaker</div>
+                <div class="description-background"></div>
+            </div>
+            <div class="description-animation right description description15">
+                <div class="description-text large">Stiff Upper Lip</div>
+                <div class="description-background"></div>
+            </div>
+            <div class="description-animation right description description16">
+                <div class="description-text xlarge">Black Ice</div>
+                <div class="description-background"></div>
+            </div>
+            <div class="description-animation right description description17">
+                <div class="description-text large">Rock or Bust</div>
+                <div class="description-background"></div>
+            </div>
+            <div class="description-animation right description description18">
+                <div class="description-text xlarge">Power Up</div>
+                <div class="description-background"></div>
+            </div>
+          </div>
+          
+    </div>
       
 </body>
 </html>
