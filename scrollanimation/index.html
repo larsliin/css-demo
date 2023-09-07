@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+    body {
+        margin: 0;
+    }
+
+    #container {
+        height: 100vh;
+        overflow-y: scroll;
+        position: relative;
+        scroll-timeline: --squareTimeline y; /* timeline id and scroll direction*/
+    }
+
+    #square {
+        animation-name: rotateAnimation; /* apply keyframes animation */
+        animation-timeline: --squareTimeline; /* bind to container   */
+        aspect-ratio: 1;
+        background-color: deeppink;
+        bottom: 0;
+        left: 50%;
+        margin-left: -100px;
+        overflow: hidden;
+        position: absolute;
+        width: 300px;
+
+        &::after {
+            color: white;
+            content: '+';
+            font-size: 585px;
+            left: 50%;
+            line-height: 0;
+            position: absolute;
+            top: 50%;
+            transform: translate(-50%, -50%);
+        }
+    }
+
+    #stretcher {
+        height: 200vh;
+    }
+
+    @keyframes rotateAnimation {
+        from {
+            transform: translateY(100%) rotate(0deg);
+        }
+        to {
+            transform: translateY(0%) rotate(360deg);
+        }
+    }
+    </style>
+</head>
+<body>
+    <div id="container">
+        <div id="square"></div>
+        <div id="stretcher"></div>
+      </div>
+</body>
+</html>

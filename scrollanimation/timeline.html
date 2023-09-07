@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CSS DEMO: animation-timeline</title>
+    <style>
+        .subject {
+            width: 200px;
+            aspect-ratio: 1;
+            margin: 0 auto;
+            background-color: deeppink;
+            position: absolute;
+            perspective: 500px;
+            
+            &.subject1 {
+                top: 100vh;
+            }
+            
+            &.subject2 {
+                top: 150vh;
+            }
+            
+            &.subject3 {
+                top: 200vh;
+            }
+
+            &.subject4 {
+                top: 250vh;
+            }
+
+            &.subject5 {
+                top: 300vh;
+            }
+
+            &.subject6 {
+                top: 350vh;
+            }
+
+            &.subject7 {
+                top: 400vh;
+            }
+        }
+
+        .content {
+            margin: 0 auto;
+            height: 300vh;
+
+        }
+
+        .animation {
+            animation: in ease-in forwards, out ease-in forwards;
+            animation-timeline: view();
+            animation-range: entry 0% entry calc(100% + 200px), exit calc(100% - 300px) exit 100%;
+        }
+
+        @keyframes in {
+            from {
+                opacity: 0;
+                transform: perspective(400px) rotateY(-180deg);
+            }
+
+            to {
+                opacity: 1;
+                transform: perspective(400px) rotateY(0deg);
+            }
+        }
+
+        @keyframes out {
+            from {
+                opacity: 1;
+                transform: perspective(400px) rotateY(0);
+            }
+
+            to {
+                opacity: 0;
+                transform: perspective(400px) rotateY(180deg);
+            }
+        }
+
+    </style>
+</head>
+<body>
+    <div class="content">
+        <h1>Content</h1>
+
+        <div class="animation subject subject1"></div>
+        <div class="animation subject subject2"></div>
+        <div class="animation subject subject3"></div>
+        <div class="animation subject subject4"></div>
+        <div class="animation subject subject5"></div>
+        <div class="animation subject subject6"></div>
+        <div class="animation subject subject7"></div>
+      </div>
+      
+</body>
+</html>
