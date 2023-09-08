@@ -33,18 +33,19 @@
             margin: 0;
         }
 
-        .outer {
+        .container {
             display: flex;
-            position: relative;
             justify-content: center;
+            position: relative;
         }
         
-        .content {
+        .timeline {
             height: 1100vh;
             position: relative;
         }
 
-        .content::after {
+        /* vertical line */
+        .container::after {
             background-color: var(--color);
             content: '';
             display: block;
@@ -54,36 +55,75 @@
             width: 6px;
         }
 
+        /* parallax backgrounds */
         .background {
+            background-position: center;
             background-repeat: no-repeat;
             background-size: cover;
+            height: 200vh;
             left: 0;
             position: fixed;
             top: 0;
             width: 100%;
-            height: 200vh;
-            background-position: center;
         }
 
         .background1 {
+            animation: background-animation-1 ease-in forwards;
+            animation-timeline: scroll();
             background-image: url(fire-bg-2.jpg);
             background-repeat: no-repeat;
             background-size: cover;
-            animation: background-animation ease-in forwards;
-            animation-timeline: scroll();
             filter: blur(2px);
-            -webkit-filter: blur(2px);
         }
         
         .background2 {
-            background-image: url(fire-bg-3.png);
-            animation: background-animation-front ease-in forwards;
+            animation: background-animation-2 ease-in forwards;
             animation-timeline: scroll();
-            filter: blur(6px);
-            -webkit-filter: blur(6px);
+            background-image: url(fire-bg-3.png);
+            filter: blur(2px);
+            transform: rotateY(180deg);
         }
 
-        .subject {
+        .background3 {
+            animation: background-animation-3 ease-in forwards;
+            animation-timeline: scroll();
+            background-image: url(fire-bg-3.png);
+            filter: blur(6px);
+        }
+
+        /* background animations */
+        @keyframes background-animation-1 {
+            from {
+                transform: translateY(0);
+            }
+            
+            to {
+                transform: translateY(-400px);
+            }
+        }
+        
+        @keyframes background-animation-2 {
+            from {
+                transform: rotateY(180deg) translateY(0);
+            }
+            
+            to {
+                transform: rotateY(180deg) translateY(-500px);
+            }
+        }
+
+        @keyframes background-animation-3 {
+            from {
+                transform: translateY(0);
+            }
+            
+            to {
+                transform: translateY(-700px);
+            }
+        }
+
+        /* vertical line round pins */
+        .pin {
             aspect-ratio: 1;
             background-color: var(--color);
             border-radius: 50%;
@@ -93,361 +133,86 @@
             position: absolute;
             width: 50px;
             
-            &.subject1 {
+            &.pin1 {
                 top: var(--pos1);
             }
             
-            &.subject2 {
+            &.pin2 {
                 top: var(--pos2);
             }
             
-            &.subject3 {
+            &.pin3 {
                 top: var(--pos3);
             }
 
-            &.subject4 {
+            &.pin4 {
                 top: var(--pos4);
             }
 
-            &.subject5 {
+            &.pin5 {
                 top: var(--pos5);
             }
 
-            &.subject6 {
+            &.pin6 {
                 top: var(--pos6);
             }
 
-            &.subject7 {
+            &.pin7 {
                 top: var(--pos7);
             }
 
-            &.subject8 {
+            &.pin8 {
                 top: var(--pos8);
             }
 
-            &.subject9 {
+            &.pin9 {
                 top: var(--pos9);
             }
 
-            &.subject10 {
+            &.pin10 {
                 top: var(--pos10);
             }
 
-            &.subject11 {
+            &.pin11 {
                 top: var(--pos11);
             }
 
-            &.subject12 {
+            &.pin12 {
                 top: var(--pos12);
             }
 
-            &.subject13 {
+            &.pin13 {
                 top: var(--pos13);
             }
 
-            &.subject14 {
+            &.pin14 {
                 top: var(--pos14);
             }
 
-            &.subject15 {
+            &.pin15 {
                 top: var(--pos15);
             }
 
-            &.subject16 {
+            &.pin16 {
                 top: var(--pos16);
             }
 
-            &.subject17 {
+            &.pin17 {
                 top: var(--pos17);
             }
 
-            &.subject18 {
+            &.pin18 {
                 top: var(--pos18);
             }
         }
 
-        .subject-animation {
+        .pin-animation {
             animation: pin-in ease-in forwards, pin-out ease-in forwards;
             animation-timeline: view();
             animation-range: entry 0% entry calc(100% + 200px), exit calc(100% - 300px) exit 100%;
         }
 
-        .description-text{
-            font-size: 35px;
-            text-align: center;
-            padding: 20px 10px;
-            z-index: 1;
-        }
-
-        .description-text.large{
-            font-size: 45px;
-        }
-
-        .description-text.xlarge{
-            font-size: 65px;
-        }
-
-        .description {
-            background-color: #ccc;
-            border-radius: 20px;
-            height: 250px;
-            margin-top: -125px;
-            position: absolute;
-            width: 300px;
-            overflow: hidden;
-            background: linear-gradient(0deg, rgba(239,233,18,1) 0%, rgba(251,21,21,1) 100%);
-            box-shadow: 0 0 20px 10px rgba(255, 0, 0, .5);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            
-            .description-background {
-                background-size: cover;
-                filter: blur(4px);
-                background-image: url(fire-bg-3.png);
-                background-repeat: no-repeat;
-                position: absolute;
-                width: 100%;
-                height: 100%;
-            }
-
-            &.description1 {
-                top: var(--pos1);
-                left: var(--description-gutter);
-            }
-            
-            &.description2 {
-                top: var(--pos2);
-                right: var(--description-gutter);
-            }
-            
-            &.description3 {
-                top: var(--pos3);
-                left: var(--description-gutter);
-            }
-
-            &.description4 {
-                top: var(--pos4);
-                right: var(--description-gutter);
-            }
-
-            &.description5 {
-                top: var(--pos5);
-                left: var(--description-gutter);
-            }
-
-            &.description6 {
-                top: var(--pos6);
-                right: var(--description-gutter);
-            }
-
-            &.description7 {
-                top: var(--pos7);
-                left: var(--description-gutter);
-            }
-
-            &.description8 {
-                top: var(--pos8);
-                right: var(--description-gutter);
-            }
-
-            &.description9 {
-                top: var(--pos9);
-                left: var(--description-gutter);
-            }
-
-            &.description10 {
-                top: var(--pos10);
-                right: var(--description-gutter);
-            }
-
-            &.description11 {
-                top: var(--pos11);
-                left: var(--description-gutter);
-            }
-
-            &.description12 {
-                top: var(--pos12);
-                right: var(--description-gutter);
-            }
-
-            &.description13 {
-                top: var(--pos13);
-                left: var(--description-gutter);
-            }
-
-            &.description14 {
-                top: var(--pos14);
-                right: var(--description-gutter);
-            }
-
-            &.description15{
-                top: var(--pos15);
-                left: var(--description-gutter);
-            }
-
-            &.description16 {
-                top: var(--pos16);
-                right: var(--description-gutter);
-            }
-
-            &.description17 {
-                top: var(--pos17);
-                left: var(--description-gutter);
-            }
-
-            &.description18 {
-                top: var(--pos18);
-                right: var(--description-gutter);
-            }
-        }
-
-        .description-animation {
-            animation: description-in ease-in forwards, description-out ease-in forwards;
-            animation-timeline: view();
-            animation-range: entry 0% entry calc(100% + 200px), exit calc(100% - 300px) exit 100%;
-        }
-
-        .description-animation.right {
-            animation: description-in-right ease-in forwards, description-out-right ease-in forwards;
-            animation-timeline: view();
-            animation-range: entry 0% entry calc(100% + 200px), exit calc(100% - 300px) exit 100%;
-        }
-
-        .year {
-            height: 60px;
-            margin-top: -30px;
-            position: absolute;
-            font-size: 50px;
-            background-color: red;
-            border-radius: 10px;
-            padding: 10px;
-
-            &.year1 {
-                top: var(--pos1);
-                right: var(--description-gutter);
-            }
-            
-            &.year2 {
-                top: var(--pos2);
-                left: var(--description-gutter);
-            }
-            
-            &.year3 {
-                top: var(--pos3);
-                right: var(--description-gutter);
-            }
-
-            &.year4 {
-                top: var(--pos4);
-                left: var(--description-gutter);
-            }
-
-            &.year5 {
-                top: var(--pos5);
-                right: var(--description-gutter);
-            }
-
-            &.year6 {
-                top: var(--pos6);
-                left: var(--description-gutter);
-            }
-
-            &.year7 {
-                top: var(--pos7);
-                right: var(--description-gutter);
-            }
-
-            &.year8 {
-                top: var(--pos8);
-                left: var(--description-gutter);
-            }
-
-            &.year9 {
-                top: var(--pos9);
-                right: var(--description-gutter);
-            }
-
-            &.year10 {
-                top: var(--pos10);
-                left: var(--description-gutter);
-            }
-
-            &.year11 {
-                top: var(--pos11);
-                right: var(--description-gutter);
-            }
-
-            &.year12 {
-                top: var(--pos12);
-                left: var(--description-gutter);
-            }
-
-            &.year13 {
-                top: var(--pos13);
-                right: var(--description-gutter);
-            }
-
-            &.year14 {
-                top: var(--pos14);
-                left: var(--description-gutter);
-            }
-
-            &.year15 {
-                top: var(--pos15);
-                right: var(--description-gutter);
-            }
-
-            &.year16{
-                top: var(--pos16);
-                left: var(--description-gutter);
-            }
-
-            &.year17 {
-                top: var(--pos17);
-                right: var(--description-gutter);
-            }
-
-            &.year18 {
-                top: var(--pos18);
-                left: var(--description-gutter);
-            }
-        }
-
-        
-        .year-animation.left {
-            animation: year-in-left ease-in forwards, year-out-left ease-in forwards;
-            animation-timeline: view();
-            animation-range: entry 0% entry calc(100% + 200px), exit calc(100% - 300px) exit 100%;
-        }
-        
-        .year-animation.right {
-            animation: year-in-right ease-in forwards, year-out-right ease-in forwards;
-            animation-timeline: view();
-            animation-range: entry 0% entry calc(100% + 200px), exit calc(100% - 300px) exit 100%;
-        }
-
-        
-
-        @keyframes background-animation {
-            from {
-                transform: translateY(0);
-            }
-            
-            to {
-                transform: translateY(-400px);
-            }
-        }
-        @keyframes background-animation-front {
-            from {
-                transform: translateY(0);
-            }
-            
-            to {
-                transform: translateY(-600px);
-            }
-        }
-
+        /* timeline pin animations */
         @keyframes pin-in {
             from {
                 transform: translateY(200px);
@@ -468,7 +233,151 @@
             }
         }
 
-        @keyframes description-in {
+        /* description text boxes */
+        .description-text{
+            font-size: 35px;
+            padding: 20px 10px;
+            text-align: center;
+            z-index: 1;
+        }
+
+        .description-text.large{
+            font-size: 45px;
+        }
+
+        .description-text.xlarge{
+            font-size: 65px;
+        }
+
+        .description {
+            align-items: center;
+            background-color: #ccc;
+            background: linear-gradient(0deg, rgba(239,233,18,1) 0%, rgba(251,21,21,1) 100%);
+            border-radius: 20px;
+            box-shadow: 0 0 20px 10px rgba(255, 0, 0, .5);
+            display: flex;
+            height: 250px;
+            justify-content: center;
+            margin-top: -125px;
+            overflow: hidden;
+            position: absolute;
+            width: 300px;
+            
+            .description-background {
+                background-image: url(fire-bg-3.png);
+                background-repeat: no-repeat;
+                background-size: cover;
+                filter: blur(4px);
+                height: 100%;
+                position: absolute;
+                width: 100%;
+            }
+
+            &.description1 {
+                left: var(--description-gutter);
+                top: var(--pos1);
+            }
+            
+            &.description2 {
+                right: var(--description-gutter);
+                top: var(--pos2);
+            }
+            
+            &.description3 {
+                left: var(--description-gutter);
+                top: var(--pos3);
+            }
+
+            &.description4 {
+                right: var(--description-gutter);
+                top: var(--pos4);
+            }
+
+            &.description5 {
+                left: var(--description-gutter);
+                top: var(--pos5);
+            }
+
+            &.description6 {
+                right: var(--description-gutter);
+                top: var(--pos6);
+            }
+
+            &.description7 {
+                left: var(--description-gutter);
+                top: var(--pos7);
+            }
+
+            &.description8 {
+                right: var(--description-gutter);
+                top: var(--pos8);
+            }
+
+            &.description9 {
+                left: var(--description-gutter);
+                top: var(--pos9);
+            }
+
+            &.description10 {
+                right: var(--description-gutter);
+                top: var(--pos10);
+            }
+
+            &.description11 {
+                left: var(--description-gutter);
+                top: var(--pos11);
+            }
+
+            &.description12 {
+                right: var(--description-gutter);
+                top: var(--pos12);
+            }
+
+            &.description13 {
+                left: var(--description-gutter);
+                top: var(--pos13);
+            }
+
+            &.description14 {
+                right: var(--description-gutter);
+                top: var(--pos14);
+            }
+
+            &.description15{
+                left: var(--description-gutter);
+                top: var(--pos15);
+            }
+
+            &.description16 {
+                right: var(--description-gutter);
+                top: var(--pos16);
+            }
+
+            &.description17 {
+                left: var(--description-gutter);
+                top: var(--pos17);
+            }
+
+            &.description18 {
+                right: var(--description-gutter);
+                top: var(--pos18);
+            }
+        }
+
+        .description-animation.left {
+            animation: description-in-left ease-in forwards, description-out ease-in forwards;
+            animation-timeline: view();
+            animation-range: entry 0% entry calc(100% + 200px), exit calc(100% - 300px) exit 100%;
+        }
+
+        .description-animation.right {
+            animation: description-in-right ease-in forwards, description-out-right ease-in forwards;
+            animation-timeline: view();
+            animation-range: entry 0% entry calc(100% + 200px), exit calc(100% - 300px) exit 100%;
+        }
+
+        /* description album names animations */
+        @keyframes description-in-left {
             from {
                 opacity: 0;
                 transform: perspective(400px) rotateY(-180deg) rotateX(-360deg) scale(.25);
@@ -480,7 +389,7 @@
             }
         }
 
-        @keyframes description-out {
+        @keyframes description-out-left {
             from {
                 opacity: 1;
                 transform: perspective(400px) rotateY(10deg) rotateX(10deg) scale(1);
@@ -516,6 +425,120 @@
             }
         }
 
+        /* year text boxes */
+        .year {
+            background-color: red;
+            border-radius: 10px;
+            font-size: 50px;
+            height: 60px;
+            margin-top: -30px;
+            padding: 10px;
+            position: absolute;
+
+            &.year1 {
+                right: var(--description-gutter);
+                top: var(--pos1);
+            }
+            
+            &.year2 {
+                left: var(--description-gutter);
+                top: var(--pos2);
+            }
+            
+            &.year3 {
+                right: var(--description-gutter);
+                top: var(--pos3);
+            }
+
+            &.year4 {
+                left: var(--description-gutter);
+                top: var(--pos4);
+            }
+
+            &.year5 {
+                right: var(--description-gutter);
+                top: var(--pos5);
+            }
+
+            &.year6 {
+                left: var(--description-gutter);
+                top: var(--pos6);
+            }
+
+            &.year7 {
+                right: var(--description-gutter);
+                top: var(--pos7);
+            }
+
+            &.year8 {
+                left: var(--description-gutter);
+                top: var(--pos8);
+            }
+
+            &.year9 {
+                right: var(--description-gutter);
+                top: var(--pos9);
+            }
+
+            &.year10 {
+                left: var(--description-gutter);
+                top: var(--pos10);
+            }
+
+            &.year11 {
+                right: var(--description-gutter);
+                top: var(--pos11);
+            }
+
+            &.year12 {
+                left: var(--description-gutter);
+                top: var(--pos12);
+            }
+
+            &.year13 {
+                right: var(--description-gutter);
+                top: var(--pos13);
+            }
+
+            &.year14 {
+                left: var(--description-gutter);
+                top: var(--pos14);
+            }
+
+            &.year15 {
+                right: var(--description-gutter);
+                top: var(--pos15);
+            }
+
+            &.year16{
+                left: var(--description-gutter);
+                top: var(--pos16);
+            }
+
+            &.year17 {
+                right: var(--description-gutter);
+                top: var(--pos17);
+            }
+
+            &.year18 {
+                left: var(--description-gutter);
+                top: var(--pos18);
+            }
+        }
+
+        .year-animation.left {
+            animation: year-in-left ease-in forwards, year-out-left ease-in forwards;
+            animation-timeline: view();
+            animation-range: entry 0% entry calc(100% + 200px), exit calc(100% - 300px) exit 100%;
+        }
+        
+        .year-animation.right {
+            animation: year-in-right ease-in forwards, year-out-right ease-in forwards;
+            animation-timeline: view();
+            animation-range: entry 0% entry calc(100% + 200px), exit calc(100% - 300px) exit 100%;
+        }
+
+        /* year animations */
         @keyframes year-in-left {
             from {
                 opacity: 0;
@@ -564,34 +587,37 @@
             }
         }
         
-
     </style>
 </head>
 <body>
-    <div class="outer">
-        <div class="content">
+    <div class="container">
+        <div class="timeline">
+            <!-- parallax backgrounds -->
             <div class="background background1"></div>
             <div class="background background2"></div>
+            <div class="background background3"></div>
 
-            <div class="subject-animation subject subject1"></div>
-            <div class="subject-animation subject subject2"></div>
-            <div class="subject-animation subject subject3"></div>
-            <div class="subject-animation subject subject4"></div>
-            <div class="subject-animation subject subject5"></div>
-            <div class="subject-animation subject subject6"></div>
-            <div class="subject-animation subject subject7"></div>
-            <div class="subject-animation subject subject8"></div>
-            <div class="subject-animation subject subject9"></div>
-            <div class="subject-animation subject subject10"></div>
-            <div class="subject-animation subject subject11"></div>
-            <div class="subject-animation subject subject12"></div>
-            <div class="subject-animation subject subject13"></div>
-            <div class="subject-animation subject subject14"></div>
-            <div class="subject-animation subject subject15"></div>
-            <div class="subject-animation subject subject16"></div>
-            <div class="subject-animation subject subject17"></div>
-            <div class="subject-animation subject subject18"></div>
+            <!-- timeline pins -->
+            <div class="pin-animation pin pin1"></div>
+            <div class="pin-animation pin pin2"></div>
+            <div class="pin-animation pin pin3"></div>
+            <div class="pin-animation pin pin4"></div>
+            <div class="pin-animation pin pin5"></div>
+            <div class="pin-animation pin pin6"></div>
+            <div class="pin-animation pin pin7"></div>
+            <div class="pin-animation pin pin8"></div>
+            <div class="pin-animation pin pin9"></div>
+            <div class="pin-animation pin pin10"></div>
+            <div class="pin-animation pin pin11"></div>
+            <div class="pin-animation pin pin12"></div>
+            <div class="pin-animation pin pin13"></div>
+            <div class="pin-animation pin pin14"></div>
+            <div class="pin-animation pin pin15"></div>
+            <div class="pin-animation pin pin16"></div>
+            <div class="pin-animation pin pin17"></div>
+            <div class="pin-animation pin pin18"></div>
             
+            <!-- years -->
             <div class="year-animation left year year1">1975</div>
             <div class="year-animation right year year2">1975</div>
             <div class="year-animation left year year3">1976</div>
@@ -611,19 +637,20 @@
             <div class="year-animation left year year17">2014</div>
             <div class="year-animation right year year18">2020</div>
 
+            <!-- description cards -->
             <div class="description-animation right description description1">
                 <div class="description-text large">High Voltage</div>
                 <div class="description-background"></div>
             </div>
-            <div class="description-animation description description2">
+            <div class="description-animation left description description2">
                 <div class="description-text xlarge">T.N.T.</div>
                 <div class="description-background"></div>
             </div>
-            <div class="description-animation right description description3">
+            <div class="description-animation left right description description3">
                 <div class="description-text large">High Voltage</div>
                 <div class="description-background"></div>
             </div>
-            <div class="description-animation description description4">
+            <div class="description-animation left description description4">
                 <div class="description-text">Dirty Deeds Done Dirt Cheap</div>
                 <div class="description-background"></div>
             </div>
@@ -631,7 +658,7 @@
                 <div class="description-text">Let There Be Rock</div>
                 <div class="description-background"></div>
             </div>
-            <div class="description-animation description description6">
+            <div class="description-animation left description description6">
                 <div class="description-text xlarge">Powerage</div>
                 <div class="description-background"></div>
             </div>
@@ -639,7 +666,7 @@
                 <div class="description-text">Highway to Hell</div>
                 <div class="description-background"></div>
             </div>
-            <div class="description-animation description description8">
+            <div class="description-animation left description description8">
                 <div class="description-text large">Back in Black</div>
                 <div class="description-background"></div>
             </div>
@@ -647,7 +674,7 @@
                 <div class="description-text">For Those About to Rock We Salute You</div>
                 <div class="description-background"></div>
             </div>
-            <div class="description-animation description description10">
+            <div class="description-animation left description description10">
                 <div class="description-text">Flick of the Switch</div>
                 <div class="description-background"></div>
             </div>
@@ -655,15 +682,15 @@
                 <div class="description-text large">Fly on the Wall</div>
                 <div class="description-background"></div>
             </div>
-            <div class="description-animation description description12">
+            <div class="description-animation left description description12">
                 <div class="description-text">Blow Up Your Video</div>
                 <div class="description-background"></div>
             </div>
-            <div class="description-animation right description description13">
+            <div class="description-animation right right description description13">
                 <div class="description-text">The Razors Edge</div>
                 <div class="description-background"></div>
             </div>
-            <div class="description-animation right description description14">
+            <div class="description-animation left description description14">
                 <div class="description-text large">Ballbreaker</div>
                 <div class="description-background"></div>
             </div>
@@ -671,7 +698,7 @@
                 <div class="description-text large">Stiff Upper Lip</div>
                 <div class="description-background"></div>
             </div>
-            <div class="description-animation right description description16">
+            <div class="description-animation left description description16">
                 <div class="description-text xlarge">Black Ice</div>
                 <div class="description-background"></div>
             </div>
@@ -679,13 +706,11 @@
                 <div class="description-text large">Rock or Bust</div>
                 <div class="description-background"></div>
             </div>
-            <div class="description-animation right description description18">
+            <div class="description-animation left description description18">
                 <div class="description-text xlarge">Power Up</div>
                 <div class="description-background"></div>
             </div>
           </div>
-          
     </div>
-      
 </body>
 </html>
